@@ -65,8 +65,8 @@
                                          ;;"~/Dropbox/orgfiles/i.org"
                                          "~/Dropbox/orgfiles/todo.org"
                                          "~/Dropbox/orgfiles/notes.org"
-                                         ;; "~/Dropbox/orgfiles/schedule.org"
-                                         ;; "~/Dropbox/orgfiles/gcal.org"
+                                         "~/Dropbox/orgfiles/schedule.org"
+                                         "~/Dropbox/orgfiles/gcal.org"
                                          ))
             (setq org-capture-templates
           			  '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/gcal.org" )
