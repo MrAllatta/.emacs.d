@@ -61,11 +61,13 @@
 
             (global-set-key (kbd "C-c c") 'org-capture)
 
-            (setq org-agenda-files (list "~/Dropbox/orgfiles/i.org"
+            (setq org-agenda-files (list 
+                                         ;;"~/Dropbox/orgfiles/i.org"
                                          "~/Dropbox/orgfiles/todo.org"
                                          "~/Dropbox/orgfiles/notes.org"
-                                         "~/Dropbox/orgfiles/schedule.org"
-                                         "~/Dropbox/orgfiles/gcal.org"))
+                                         ;; "~/Dropbox/orgfiles/schedule.org"
+                                         ;; "~/Dropbox/orgfiles/gcal.org"
+                                         ))
             (setq org-capture-templates
           			  '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/gcal.org" )
           				   "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
