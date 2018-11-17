@@ -29,7 +29,6 @@
 
 * Org mode
 
-
   Org bullets makes things look pretty
   #+BEGIN_SRC emacs-lisp
 
@@ -37,7 +36,7 @@
   :ensure t
   :pin org)
 
-    (setenv "BROWSER" "chromium-browser")
+    (setenv "BROWSER" "firefox")
 
         (use-package org-bullets
         :ensure t
@@ -53,12 +52,6 @@
              '(org-startup-indented t)
              )
 
-            (setq org-file-apps
-  		(append '(
-          		  ("\\.pdf\\'" . "evince %s")
- ("\\.x?html?\\'" . "/usr/bin/chromium-browser %s")
-          		  ) org-file-apps ))
-
             (global-set-key "\C-ca" 'org-agenda)
 
             (setq org-agenda-custom-commands
@@ -68,10 +61,11 @@
 
             (global-set-key (kbd "C-c c") 'org-capture)
 
-            (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
-            "~/Dropbox/orgfiles/soe-cal.org"
-          			       "~/Dropbox/orgfiles/i.org"
-          			       "~/Dropbox/orgfiles/schedule.org"))
+            (setq org-agenda-files (list "~/Dropbox/orgfiles/i.org"
+                                         "~/Dropbox/orgfiles/todo.org"
+                                         "~/Dropbox/orgfiles/notes.org"
+                                         "~/Dropbox/orgfiles/schedule.org"
+                                         "~/Dropbox/orgfiles/gcal.org"))
             (setq org-capture-templates
           			  '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/gcal.org" )
           				   "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
@@ -140,7 +134,6 @@
 
   #+RESULTS:
   : make-capture-frame
-
 * Ace windows for easy window switching
   #+BEGIN_SRC emacs-lisp
   (use-package ace-window
@@ -830,8 +823,8 @@
        (if (file-readable-p f)
            (load-file f)))
 
-     (load-if-exists "~/Dropbox/shared/mu4econfig.el")
-     (load-if-exists "~/Dropbox/shared/not-for-github.el")
+;;     (load-if-exists "~/Dropbox/shared/mu4econfig.el")
+;;     (load-if-exists "~/Dropbox/shared/not-for-github.el")
 
    #+END_SRC
 
@@ -841,8 +834,8 @@
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
-(add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
-(add-hook 'mu4e-compose-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'mu4e-compose-mode-hook 'turn-on-flyspell)
+;; (add-hook 'mu4e-compose-mode-hook 'turn-on-auto-fill)
 
 #+END_SRC
 * Better Shell
@@ -1385,16 +1378,47 @@ Eshell prompt
 #+END_SRC
 * mu4e-conversation
 #+BEGIN_SRC emacs-lisp
-(use-package mu4e-conversation
-:ensure t
-)
+;; (use-package mu4e-conversation
+;; :ensure t
+;; )
 
 #+END_SRC
 * Misc
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "chromium-browser")
+      browse-url-generic-program "firefox")
 
 (setq auto-window-vscroll nil)
 
+#+END_SRC
+* neotree
+#+BEGIN_SRC emacs-lisp
+
+(use-package neotree
+  :ensure t
+  :bind (("<f8>" . neotree-toggle))
+  :defer
+  :config
+    (evil-set-initial-state 'neotree-mode 'normal)
+    (evil-define-key 'normal neotree-mode-map
+      (kbd "RET") 'neotree-enter
+      (kbd "c")   'neotree-create-node
+      (kbd "r")   'neotree-rename-node
+      (kbd "d")   'neotree-delete-node
+      (kbd "j")   'neotree-next-node
+      (kbd "k")   'neotree-previous-node
+      (kbd "g")   'neotree-refresh
+      (kbd "C")   'neotree-change-root
+      (kbd "I")   'neotree-hidden-file-toggle
+      (kbd "H")   'neotree-hidden-file-toggle
+      (kbd "q")   'neotree-hide
+      (kbd "l")   'neotree-enter
+))
+
+#+END_SRC
+
+* todotxt
+#+BEGIN_SRC emacs-lisp
+(use-package todotxt
+  :ensure t)
 #+END_SRC
